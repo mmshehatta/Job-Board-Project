@@ -1,0 +1,85 @@
+
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block body %} 
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{user.username}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area" style="margin-top: -70px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="job_details_header">
+                        <!-- Messages alert here -->
+
+                        {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                        {% endif%}
+
+                        <!-- /end Messages alert here -->
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="profile-image">
+                                    <img class="rounded-circle account-img" src="{{ profile.image.url }}" style="height: 125px;
+                                    width: 125px;
+                                    margin-right: 20px;
+                                    margin-bottom: 16px;">                  
+                                
+                                </div>
+                                <div class="jobs_conetent">
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{profile.city}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class=" white-bg p-2 ">
+                                                      
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %} 
+                              
+                            {% bootstrap_form user_info_form %}
+                            {% bootstrap_form profile_info_form %}
+                            
+                            <div class="">
+                                <button type="submit"  class="boxed-btn3 w-100" >Edit Profile</button>
+                            </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    {% endblock body %}
+
+
+
+
+
+ 
